@@ -16,7 +16,7 @@ function submitGuess() {
   const result = evaluateGuess(secretWord, guess);
   displayGuess(guess, result);
 
-  if (result.correct === 4) {
+  if (result.correct.length === 4) {
     showMessage(`Congratulations! You've guessed the word "${secretWord}" in ${attempts} attempts.`);
     guessInput.disabled = true;
   } else if (attempts >= maxAttempts) {
@@ -69,9 +69,9 @@ function formatGuess(guess, correct, misplaced) {
 
   for (let i = 0; i < guessChars.length; i++) {
     if (correct.includes(guessChars[i]) && correct.indexOf(guessChars[i]) === i) {
-      formatted += `<span style="color: green">${guessChars[i]}</span>`;
+      formatted += `<span style="background-color: green; color: black; padding: 2px">${guessChars[i]}</span>`;
     } else if (misplaced.includes(guessChars[i])) {
-      formatted += `<span style="color: orange">${guessChars[i]}</span>`;
+      formatted += `<span style="background-color: orange; color: black; padding: 2px">${guessChars[i]}</span>`;
     } else {
       formatted += guessChars[i];
     }
