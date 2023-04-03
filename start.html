@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle - 4 Letter Words</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    input[type="text"] {
+      width: 30px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <h1>Wordle - 4 Letter Words</h1>
+  <p>Enter a 4 letter word: <input type="text" id="guess" maxlength="4"> <button onclick="submitGuess()">Submit</button></p>
+  <p id="message"></p>
+  <div id="guesses"></div>
+
+  <script src="wordle.js"></script>
+</body>
+</html>
