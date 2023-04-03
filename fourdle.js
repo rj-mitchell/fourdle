@@ -58,9 +58,28 @@ function evaluateGuess(secret, guess) {
 function displayGuess(guess, result) {
   const guessesDiv = document.getElementById('guesses');
   const guessElement = document.createElement('p');
-  guessElement.innerHTML = `${guess} - Correct: ${result.correct.join(', ')} Misplaced: ${result.misplaced.join(', ')}`;
+  const formattedGuess = formatGuess(guess, result.correct, result.misplaced);
+  guessElement.innerHTML = formattedGuess;
   guessesDiv.appendChild(guessElement);
 }
+
+function formatGuess(guess, correct, misplaced) {
+  const guessChars = guess.split('');
+  let formatted = '';
+
+  for (let i = 0; i < guessChars.length; i++) {
+    if (correct.includes(guessChars[i]) && correct.indexOf(guessChars[i]) === i) {
+      formatted += `<span style="color: green">${guessChars[i]}</span>`;
+    } else if (misplaced.includes(guessChars[i])) {
+      formatted += `<span style="color: orange">${guessChars[i]}</span>`;
+    } else {
+      formatted += guessChars[i];
+    }
+  }
+
+  return formatted;
+}
+
 
 function showMessage(message) {
   const messageElement = document.getElementById('message');
