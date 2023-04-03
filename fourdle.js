@@ -30,14 +30,14 @@ function submitGuess() {
 }
 
 function evaluateGuess(secret, guess) {
-  let correct = 0;
-  let misplaced = 0;
+  let correct = [];
+  let misplaced = [];
   const secretChars = secret.split('');
   const guessChars = guess.split('');
 
   for (let i = 0; i < secretChars.length; i++) {
     if (secretChars[i] === guessChars[i]) {
-      correct++;
+      correct.push(secretChars[i]);
       secretChars[i] = null;
       guessChars[i] = null;
     }
@@ -47,7 +47,7 @@ function evaluateGuess(secret, guess) {
     if (guessChars[i] === null) continue;
     const index = secretChars.indexOf(guessChars[i]);
     if (index !== -1) {
-      misplaced++;
+      misplaced.push(guessChars[i]);
       secretChars[index] = null;
     }
   }
@@ -58,7 +58,7 @@ function evaluateGuess(secret, guess) {
 function displayGuess(guess, result) {
   const guessesDiv = document.getElementById('guesses');
   const guessElement = document.createElement('p');
-  guessElement.innerHTML = `${guess} - Correct: ${result.correct} Misplaced: ${result.misplaced}`;
+  guessElement.innerHTML = `${guess} - Correct: ${result.correct.join(', ')} Misplaced: ${result.misplaced.join(', ')}`;
   guessesDiv.appendChild(guessElement);
 }
 
@@ -66,3 +66,4 @@ function showMessage(message) {
   const messageElement = document.getElementById('message');
   messageElement.textContent = message;
 }
+
